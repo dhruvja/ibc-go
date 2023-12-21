@@ -1,6 +1,7 @@
 package types
 
 import (
+	"fmt"
 	"encoding/json"
 	"errors"
 
@@ -151,6 +152,9 @@ func (cs ClientState) VerifyMembership(
 	path exported.Path,
 	value []byte,
 ) error {
+	fmt.Println("this is client state height %+v\n", cs.GetLatestHeight())
+	fmt.Println("this is proof height %+v\n", height)
+	fmt.Println("This is the client store %+v\n", clientStore)
 	if cs.GetLatestHeight().LT(height) {
 		return errorsmod.Wrapf(
 			ibcerrors.ErrInvalidHeight,
